@@ -68,7 +68,7 @@ function Transactions({ role, transactions, setTransactions }) {
     //Saving the edited transaction
     const handleSave = () => {
         setTransactions(
-            transactions.map((t) => t.id === editId ? { ...editData, id: editId } : t)
+            transactions.map((t) => t.id === editId ? { ...editData, id: editId, amount: Number(editData.amount) } : t)
         )
 
         setEditId(null)
@@ -227,7 +227,7 @@ function Transactions({ role, transactions, setTransactions }) {
 
                 <div className="flex flex-col md:flex-row gap-4 mb-4">
 
-                    {/* 🔍 Search */}
+                    {/* Search */}
                     <input
                         type="text"
                         placeholder="Search by title or category..."
@@ -239,7 +239,7 @@ function Transactions({ role, transactions, setTransactions }) {
                         className="border rounded-lg px-4 py-2 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
 
-                    {/* 🔽 Type Filter */}
+                    {/* Type Filter */}
                     <select
                         value={selectedType}
                         onChange={(e) => {
@@ -253,7 +253,7 @@ function Transactions({ role, transactions, setTransactions }) {
                         <option value="expense">Expense</option>
                     </select>
 
-                    {/* 🔃 Sort */}
+                    {/* Sort */}
                     <select
                         value={sortOption}
                         onChange={(e) => {

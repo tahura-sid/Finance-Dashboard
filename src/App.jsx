@@ -22,8 +22,11 @@ const initialTransactions = [  { id: 1, date: "2026-04-01", type: "income", amou
 ]
 
 function App() {
+  //role state for access control (admin, viewer)
   const [role, setRole] = useState("viewer")
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+
+  //sidebar state for responsive design
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev)
   const closeSidebar = () => {
@@ -32,6 +35,7 @@ function App() {
     }
   }
 
+  // transactions state with localStorage persistence
   const [transactions, setTransactions] = useState(() => {
     const saved = localStorage.getItem("transactions")
     if (saved) {

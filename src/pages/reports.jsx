@@ -1,5 +1,5 @@
 function Reports({ transactions }) {
-  // 🔹 Highest spending category
+  //  Highest spending category
   const categoryTotals = transactions
     .filter(t => t.type === "expense")
     .reduce((acc, t) => {
@@ -10,7 +10,7 @@ function Reports({ transactions }) {
   const highestCategory = Object.entries(categoryTotals)
     .sort((a, b) => b[1] - a[1])[0] || ["N/A", 0];
 
-  // 🔹 Monthly comparison
+  //  Monthly comparison
   const monthlyData = transactions.reduce((acc, t) => {
     const month = t.date.slice(0, 7); // "2026-04"
 
@@ -31,7 +31,7 @@ function Reports({ transactions }) {
   const latestMonth = months.length ? months[months.length - 1] : "N/A";
   const latestData = monthlyData[latestMonth] || { income: 0, expense: 0 };
 
-  // 🔹 Observation
+  //  Observation
   const observation = latestData.income > latestData.expense
     ? "You saved more than you spent this month. Great job!"
     : latestData.income < latestData.expense
@@ -44,17 +44,17 @@ function Reports({ transactions }) {
       ? "text-amber-800 bg-amber-50"
       : "text-slate-700 bg-slate-50";
 
-  // 🔹 Total transactions
+  //  Total transactions
   const totalTransactions = transactions.length;
 
-  // 🔹 Average expense
+  //  Average expense
   const expenseList = transactions.filter(t => t.type === "expense");
   const totalExpense = expenseList.reduce((acc, t) => acc + t.amount, 0);
   const avgExpense = expenseList.length
     ? Math.round(totalExpense / expenseList.length)
     : 0;
 
-  // 🔹 Savings rate
+  //  Savings rate
   const totalIncome = transactions
     .filter(t => t.type === "income")
     .reduce((acc, t) => acc + t.amount, 0);
@@ -63,7 +63,7 @@ function Reports({ transactions }) {
     ? Math.round(((totalIncome - totalExpense) / totalIncome) * 100)
     : 0;
 
-  // 🔹 Most frequent category
+  //  Most frequent category
   const categoryCount = transactions.reduce((acc, t) => {
     acc[t.category] = (acc[t.category] || 0) + 1;
     return acc;

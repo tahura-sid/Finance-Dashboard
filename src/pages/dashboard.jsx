@@ -6,7 +6,7 @@ import {
 
 function Dashboard({ transactions }) {
 
-  // 🔹 Summary calculations
+  //  Summary calculations
   const income = transactions
     .filter(t => t.type === "income")
     .reduce((acc, t) => acc + t.amount, 0);
@@ -17,7 +17,7 @@ function Dashboard({ transactions }) {
 
   const balance = income - expenses;
 
-  // 🔹 Line chart data (balance over time)
+  //  Line chart data (balance over time)
   const sorted = [...transactions].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
@@ -32,7 +32,7 @@ function Dashboard({ transactions }) {
     return acc;
   }, []);
 
-  // 🔹 Pie chart data (expense breakdown with percentages)
+  //  Pie chart data (expense breakdown with percentages)
   const expenseData = transactions
     .filter(t => t.type === "expense")
     .reduce((acc, t) => {
